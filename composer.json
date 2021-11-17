@@ -1,0 +1,34 @@
+{
+    "name": "infinitysoftwareltd/walletlibrary",
+    "description": "Custom Package for creating infi/hedge wallet",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jerson Ramos",
+            "email": "jerson@innovativesprout.com"
+        }
+    ],
+    "require": {
+        "arkecosystem/crypto": "^1.7",
+        "ext-gmp": "*"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^6.23"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "InfinitySolution\\Wallet\\ServiceProvider"
+            ],
+            "aliases": {
+                "Wallet": "InfinitySolution\\Wallet\\Facades\\Wallet"
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "InfinitySolution\\Wallet\\": "src/"
+        }
+    }
+}
