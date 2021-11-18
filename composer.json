@@ -1,12 +1,12 @@
 {
-    "name": "flerovium/walletlibrary",
+    "name": "infinitysoftwareltd/walletlibrary",
     "description": "Custom Package for creating infi/hedge wallet",
     "type": "library",
     "license": "MIT",
     "authors": [
         {
             "name": "Jerson Ramos",
-            "email": "jerson@innovativesprout.com"
+            "email": "jerson@infinitysolutions.io"
         }
     ],
     "require": {
