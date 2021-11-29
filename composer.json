@@ -1,6 +1,6 @@
 {
-    "name": "nfinityoftwareltd/walletlibrary",
-    "description": "Custom Package for creating infi/hedge wallet and signing transaction",
+    "name": "infinitysoftwareltd/walletlibrary",
+    "description": "Custom Package for creating infi/hedge wallet",
     "type": "library",
     "license": "MIT",
     "authors": [
