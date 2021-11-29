@@ -1,28 +1,32 @@
 {
-    "name": "flerovium/walletlibrary",
-    "description": "Custom Package for creating infi/hedge wallet",
+    "name": "nfinityoftwareltd/walletlibrary",
+    "description": "Custom Package for creating infi/hedge wallet and signing transaction",
     "type": "library",
     "license": "MIT",
     "authors": [
         {
             "name": "Jerson Ramos",
-            "email": "jerson@innovativesprout.com"
+            "email": "jerson@infinitysolutions.io"
         }
     ],
     "require": {
         "arkecosystem/crypto": "^1.7",
-        "ext-gmp": "*"
+        "ext-gmp": "*",
+        "ext-json": "*"
     },
     "require-dev": {
-        "orchestra/testbench": "^6.23"
+        "orchestra/testbench": "^6.23",
+        "guzzlehttp/guzzle": "^6.3"
     },
     "extra": {
         "laravel": {
             "providers": [
-                "InfinitySolution\\Wallet\\ServiceProvider"
+                "InfinitySolution\\Wallet\\WalletServiceProvider",
+                "InfinitySolution\\Wallet\\TransactionServiceProvider"
             ],
             "aliases": {
-                "Wallet": "InfinitySolution\\Wallet\\Facades\\Wallet"
+                "Wallet": "InfinitySolution\\Wallet\\Facades\\Wallet",
+                "Transaction": "InfinitySolution\\Wallet\\Facades\\Transaction"
             }
         }
     },
