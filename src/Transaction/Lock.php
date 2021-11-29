@@ -2,11 +2,12 @@
 
 use ArkEcosystem\Crypto\Configuration\Network;
 use ArkEcosystem\Crypto\Identities\PrivateKey;
+use ArkEcosystem\Crypto\Transactions\Builder\HtlcLockBuilder;
 use ArkEcosystem\Crypto\Transactions\Builder\TransferBuilder;
 use Illuminate\Support\Facades\Validator;
 use InfinitySolution\Wallet\TransactionContract;
 
-class Transfer implements TransactionContract {
+class Lock implements TransactionContract {
 
     protected $server, $network, $data;
 
@@ -29,29 +30,36 @@ class Transfer implements TransactionContract {
     {
         $response = [
             'message' => [],
-            'peer' => null
+            'peer' => null,
+            'unlockSecretHex' => null
         ];
 
         $validator = Validator::make($this->data, [
+            'nonce' => ['required'],
             'fee' => ['required'],
             'amount' => ['required'],
             'passphrase' => ['required'],
             'recipient' => ['required'],
+            'asset.secret_hash' => ['required'],
+            'asset.expiration.type' => ['required'],
+            'asset.expiration.value' => ['required'],
         ]);
 
         if ($validator->fails()){
-            if ($validator->errors()->hasAny(['network', 'nonce', 'fee', 'amount', 'passphrase', 'recipient'])) {
+            if ($validator->errors()->hasAny(['network', 'nonce', 'fee', 'amount', 'passphrase', 'recipient', 'asset'])) {
                 $message = $validator->errors()->first();
             } else {
                 $message = 'There is an error.';
             }
 
-            return $response = [
-                'message' => $message,
-                'peer' => null
-            ];
+            $response['message'] = $message;
+            $response['peer'] = null;
         }
 
+        $password = $this->data['asset']['secret_hash'];
+
+        $unlockSecretHex = hash("sha256", $password);
+        $secretHashHex =  hash("sha256", pack("H*", $unlockSecretHex));
 
         if ($this->server == "infinity"){
             $network = "InfinitySolution\\Wallet\\Network\\Infinity\\".$this->network;
@@ -75,11 +83,12 @@ class Transfer implements TransactionContract {
             }
         }
 
-        $generated =  TransferBuilder::new()
+        $generated =  HtlcLockBuilder::new()
+            ->htlcLockAsset($secretHashHex, $this->data['asset']['expiration']['type'], $this->data['asset']['expiration']['value'])
             ->recipient($this->data['recipient'])
             ->amount($this->data['amount'])
-            ->withFee($this->data['fee'])
-            ->withNonce($nonce);
+            ->withNonce($nonce)
+            ->withFee($this->data['fee']);
         if (!empty($this->data['vendor_field']) && !is_null($this->data['vendor_field'])){
             $generated->vendorField($this->data['vendor_field']);
         }
@@ -92,11 +101,13 @@ class Transfer implements TransactionContract {
 
             $response['message'] = $transactions;
             $response['peer'] = $network->peer() . '/transactions';
+            $response['unlockSecretHex'] = $unlockSecretHex;
         }
 
         return [
             'transactions' => $response['message'],
-            'peer' => $response['peer']
+            'peer' => $response['peer'],
+            'unlockSecretHex' => $response['$unlockSecretHex']
         ];
     }
 }
