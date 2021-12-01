@@ -11,7 +11,7 @@ class TransactionServiceProvider extends ServiceProvider{
 
     public function register()
     {
-        $this->app->bind('wallet', function(){
+        $this->app->bind('transaction', function(){
             return new Transaction();
         });
     }

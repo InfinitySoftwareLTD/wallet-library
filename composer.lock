@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d5793804b30d2ce8dcc32456b544d7e0",
+    "content-hash": "443bbf57eb43d716f8915a62351130ef",
     "packages": [
         {
             "name": "arkecosystem/crypto",
@@ -5297,6 +5297,7 @@
                     "type": "tidelift"
                 }
             ],
+            "abandoned": "symfony/mailer",
             "time": "2021-10-18T15:26:12+00:00"
         },
         {
@@ -8092,7 +8093,8 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "ext-gmp": "*"
+        "ext-gmp": "*",
+        "ext-json": "*"
     },
     "platform-dev": [],
     "plugin-api-version": "1.1.0"

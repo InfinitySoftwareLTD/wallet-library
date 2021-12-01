@@ -16,7 +16,8 @@
     },
     "require-dev": {
         "orchestra/testbench": "^6.23",
-        "guzzlehttp/guzzle": "^6.3"
+        "guzzlehttp/guzzle": "^6.3",
+        "phpunit/phpunit": "^9.5"
     },
     "extra": {
         "laravel": {
@@ -33,6 +34,11 @@
     "autoload": {
         "psr-4": {
             "InfinitySolution\\Wallet\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "InfinitySolution\\Wallet\\Tests\\": "tests"
         }
     }
 }
