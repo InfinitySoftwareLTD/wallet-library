@@ -23,11 +23,13 @@
         "laravel": {
             "providers": [
                 "InfinitySolution\\Wallet\\WalletServiceProvider",
-                "InfinitySolution\\Wallet\\TransactionServiceProvider"
+                "InfinitySolution\\Wallet\\TransactionServiceProvider",
+                "InfinitySolution\\Wallet\\WebhookServiceProvider"
             ],
             "aliases": {
                 "Wallet": "InfinitySolution\\Wallet\\Facades\\Wallet",
-                "Transaction": "InfinitySolution\\Wallet\\Facades\\Transaction"
+                "Transaction": "InfinitySolution\\Wallet\\Facades\\Transaction",
+                "Webhook": "InfinitySolution\\Wallet\\Facades\\Webhook"
             }
         }
     },

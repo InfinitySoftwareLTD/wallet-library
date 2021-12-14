@@ -8,9 +8,10 @@ class Transaction{
 
     protected \InfinitySolution\Wallet\TransactionContract $contract;
 
-    public function __construct(TransactionContract $contract)
+    public function setTransaction(TransactionContract $contract)
     {
         $this->contract = $contract;
+        return $this;
     }
 
     public function server($server): Transaction

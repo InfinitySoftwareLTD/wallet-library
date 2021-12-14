@@ -2,6 +2,7 @@
 
 use InfinitySolution\Wallet\Transaction;
 use InfinitySolution\Wallet\Wallet;
+use InfinitySolution\Wallet\Webhook;
 use Orchestra\Testbench\TestCase;
 
 
@@ -27,7 +28,8 @@ class WalletTest extends TestCase{
             'recipient' => $wallet['address'],
         ];
 
-        $sign_transaction = (new Transaction(new \InfinitySolution\Wallet\Transaction\Transfer));
+        $sign_transaction = (new Transaction);
+        $sign_transaction->setTransaction(new \InfinitySolution\Wallet\Transaction\Transfer);
         $sign_transaction->data($data);
         $sign_transaction->network('Testnet');
         $sign_transaction->server('infinity');
@@ -47,7 +49,8 @@ class WalletTest extends TestCase{
             'recipient' => $wallet['address'],
         ];
 
-        $sign_transaction = (new Transaction(new \InfinitySolution\Wallet\Transaction\Transfer));
+        $sign_transaction = (new Transaction);
+        $sign_transaction->setTransaction(new \InfinitySolution\Wallet\Transaction\Transfer);
         $sign_transaction->data($data);
         $sign_transaction->network('Devnet');
         $sign_transaction->server('infinity');
@@ -68,7 +71,8 @@ class WalletTest extends TestCase{
             'recipient' => $wallet['address'],
         ];
 
-        $sign_transaction = (new Transaction(new \InfinitySolution\Wallet\Transaction\Transfer));
+        $sign_transaction = (new Transaction);
+        $sign_transaction->setTransaction(new \InfinitySolution\Wallet\Transaction\Transfer);
         $sign_transaction->data($data);
         $sign_transaction->network('Mainnet');
         $sign_transaction->server('infinity');
@@ -89,7 +93,8 @@ class WalletTest extends TestCase{
             'recipient' => $wallet['address'],
         ];
 
-        $sign_transaction = (new Transaction(new \InfinitySolution\Wallet\Transaction\Transfer));
+        $sign_transaction = (new Transaction);
+        $sign_transaction->setTransaction(new \InfinitySolution\Wallet\Transaction\Transfer);
         $sign_transaction->data($data);
         $sign_transaction->network('Devnet');
         $sign_transaction->server('hedge');
@@ -110,7 +115,8 @@ class WalletTest extends TestCase{
             'recipient' => $wallet['address'],
         ];
 
-        $sign_transaction = (new Transaction(new \InfinitySolution\Wallet\Transaction\Transfer));
+        $sign_transaction = (new Transaction);
+        $sign_transaction->setTransaction(new \InfinitySolution\Wallet\Transaction\Transfer);
         $sign_transaction->data($data);
         $sign_transaction->network('Testnet');
         $sign_transaction->server('hedge');
@@ -131,12 +137,34 @@ class WalletTest extends TestCase{
             'recipient' => $wallet['address'],
         ];
 
-        $sign_transaction = (new Transaction(new \InfinitySolution\Wallet\Transaction\Transfer));
+        $sign_transaction = (new Transaction);
+        $sign_transaction->setTransaction(new \InfinitySolution\Wallet\Transaction\Transfer);
         $sign_transaction->data($data);
         $sign_transaction->network('Mainnet');
         $sign_transaction->server('hedge');
         $tx = $sign_transaction->build();
 
         $this->assertIsArray($tx);
+    }
+
+    public function test_it_to_create_webhook()
+    {
+
+        $events = [
+            [
+                'event' => 'transaction.applied',
+                'target' => 'https://infinitysolutions.io/api/blockchain-webhooks',
+                'conditions' => [
+                    [
+                        "key" => "recipientId",
+                        "condition" => "eq",
+                        "value" => "wallet_address"
+                    ]
+                ]
+            ]
+        ];
+
+        $event_created = (new Webhook)->create($events);
+        $this->assertTrue($event_created);
     }
 }
