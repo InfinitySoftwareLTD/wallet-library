@@ -11,6 +11,7 @@ class WalletTest extends TestCase{
     public function test_it_returns_created_wallet()
     {
         $wallet = (new Wallet)->generateWallet();
+        print_r(json_encode($wallet));
         $this->assertArrayHasKey('passphrase', $wallet, "Array doesn't contains 'passphrase' as key");
         $this->assertArrayHasKey('pubkey', $wallet, "Array doesn't contains 'pubkey' as key");
         $this->assertArrayHasKey('address', $wallet, "Array doesn't contains 'address' as key");
@@ -35,6 +36,7 @@ class WalletTest extends TestCase{
         $sign_transaction->server('infinity');
         $tx = $sign_transaction->build();
 
+        print_r(json_encode($tx));
         $this->assertIsArray($tx);
     }
 
