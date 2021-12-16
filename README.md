@@ -3,7 +3,7 @@
 
 [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://github.com/InfinitySoftwareLTD/wallet-library)
 
-Wallet library that handles on creating paper wallet that supports Infinity and Hedge token.
+Wallet library that handles on creating paper wallet that supports Infinity and Hedge coins.
 
 ## Features
 
@@ -78,7 +78,7 @@ $data = [
 $sign_transaction = (new Transaction);
 $sign_transaction->setTransaction(new \InfinitySolution\Wallet\Transaction\Transfer);
 $sign_transaction->data($data);
-$sign_transaction->network('Testnet');
+$sign_transaction->network('Mainnet');
 $sign_transaction->server('infinity');
 return $sign_transaction->build();
 ```
@@ -104,7 +104,7 @@ Response:
                 }
             ]
     },
-    "peer":"https://api.infinitysolutions.io/api/transactions"
+    "peer":"http://{your_node_ip_server}:4003/api/transactions"
 }
 ```
 
@@ -117,7 +117,7 @@ Follow the data structure to create an event
 $events = [
     [
         'event' => 'transaction.applied',
-        'target' => 'https://infinitysolutions.io/api/blockchain-webhooks',
+        'target' => 'https://{your_endpoint_post}',
         'conditions' => [
             [
                 "key" => "recipientId",
@@ -139,7 +139,7 @@ And in your controller or PHP class, pass the array of events and it will return
 $events = [
     [
         'event' => 'transaction.applied',
-        'target' => 'https://infinitysolutions.io/api/blockchain-webhooks',
+        'target' => 'https://{your_endpoint_post}',
         'conditions' => [
             [
                 "key" => "recipientId",
