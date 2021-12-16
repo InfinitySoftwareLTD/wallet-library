@@ -3,7 +3,7 @@
 
 [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://github.com/InfinitySoftwareLTD/wallet-library)
 
-Wallet library that handles on creating paper wallet that supports Infinity and Hedge token.
+Wallet library that handles on creating paper wallet that supports Infinity and Hedge coins.
 
 ## Features
 
