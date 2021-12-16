@@ -1,5 +1,8 @@
 <?php namespace InfinitySolution\Wallet\Tests;
 
+use InfinitySolution\Wallet\Network\Infinity\Devnet;
+use InfinitySolution\Wallet\Network\Infinity\Mainnet;
+use InfinitySolution\Wallet\Network\Infinity\Testnet;
 use InfinitySolution\Wallet\Transaction;
 use InfinitySolution\Wallet\Wallet;
 use InfinitySolution\Wallet\Webhook;
@@ -8,10 +11,25 @@ use Orchestra\Testbench\TestCase;
 
 class WalletTest extends TestCase{
 
-    public function test_it_returns_created_wallet()
+    public function test_it_returns_created_testnet_wallet()
     {
-        $wallet = (new Wallet)->generateWallet();
-        print_r(json_encode($wallet));
+        $wallet = (new Wallet(new Testnet))->generateWallet();
+        $this->assertArrayHasKey('passphrase', $wallet, "Array doesn't contains 'passphrase' as key");
+        $this->assertArrayHasKey('pubkey', $wallet, "Array doesn't contains 'pubkey' as key");
+        $this->assertArrayHasKey('address', $wallet, "Array doesn't contains 'address' as key");
+    }
+
+    public function test_it_returns_created_devnet_wallet()
+    {
+        $wallet = (new Wallet(new Devnet))->generateWallet();
+        $this->assertArrayHasKey('passphrase', $wallet, "Array doesn't contains 'passphrase' as key");
+        $this->assertArrayHasKey('pubkey', $wallet, "Array doesn't contains 'pubkey' as key");
+        $this->assertArrayHasKey('address', $wallet, "Array doesn't contains 'address' as key");
+    }
+
+    public function test_it_returns_created_mainnet_wallet()
+    {
+        $wallet = (new Wallet(new Mainnet))->generateWallet();
         $this->assertArrayHasKey('passphrase', $wallet, "Array doesn't contains 'passphrase' as key");
         $this->assertArrayHasKey('pubkey', $wallet, "Array doesn't contains 'pubkey' as key");
         $this->assertArrayHasKey('address', $wallet, "Array doesn't contains 'address' as key");
@@ -20,7 +38,7 @@ class WalletTest extends TestCase{
     public function test_it_returns_signed_transfer_testnet_transaction()
     {
 
-        $wallet = (new Wallet)->generateWallet();
+        $wallet = (new Wallet(new Testnet))->generateWallet();
 
         $data = [
             'fee' => 1001,
@@ -42,7 +60,7 @@ class WalletTest extends TestCase{
 
     public function test_it_returns_signed_transfer_devnet_transaction()
     {
-        $wallet = (new Wallet)->generateWallet();
+        $wallet = (new Wallet(new Devnet))->generateWallet();
 
         $data = [
             'fee' => 1001,
@@ -64,7 +82,7 @@ class WalletTest extends TestCase{
     public function test_it_returns_signed_transfer_mainnet_transaction()
     {
 
-        $wallet = (new Wallet)->generateWallet();
+        $wallet = (new Wallet(new Mainnet()))->generateWallet();
 
         $data = [
             'fee' => 1001,
@@ -108,7 +126,7 @@ class WalletTest extends TestCase{
     public function test_it_returns_signed_transfer_testnet_hedge_transaction()
     {
 
-        $wallet = (new Wallet)->generateWallet();
+        $wallet = (new Wallet(new \InfinitySolution\Wallet\Network\Hedge\Testnet))->generateWallet();
 
         $data = [
             'fee' => 1001,
@@ -130,7 +148,7 @@ class WalletTest extends TestCase{
     public function test_it_returns_signed_transfer_mainnet_hedge_transaction()
     {
 
-        $wallet = (new Wallet)->generateWallet();
+        $wallet = (new Wallet(new \InfinitySolution\Wallet\Network\Hedge\Mainnet))->generateWallet();
 
         $data = [
             'fee' => 1001,
