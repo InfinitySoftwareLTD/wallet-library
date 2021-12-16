@@ -104,7 +104,7 @@ Response:
                 }
             ]
     },
-    "peer":"http://{node_ip_server}:4003/api/transactions"
+    "peer":"http://{your_node_ip_server}:4003/api/transactions"
 }
 ```
 
