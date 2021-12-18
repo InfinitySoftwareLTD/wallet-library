@@ -1,5 +1,6 @@
 <?php namespace InfinitySolution\Wallet\Tests;
 
+use InfinitySolution\Wallet\Fee;
 use InfinitySolution\Wallet\Network\Infinity\Devnet;
 use InfinitySolution\Wallet\Network\Infinity\Mainnet;
 use InfinitySolution\Wallet\Network\Infinity\Testnet;
@@ -191,5 +192,17 @@ class WalletTest extends TestCase{
 
         $event_created = (new Webhook)->create($events);
         $this->assertTrue($event_created);
+    }
+
+    public function test_it_get_fees()
+    {
+        $fees = (new Fee);
+        $fees->setPeer('api.infinitysolutions.io');
+        $fees->setProtocol('https');
+        $fees->setUrlFee('/api/transactions/fees');
+        $fees->getFees();
+
+        print_r($fees->getFees());
+        $this->assertIsArray($fees->getFees());
     }
 }

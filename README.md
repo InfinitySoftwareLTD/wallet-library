@@ -303,3 +303,77 @@ $events = [
 
 (new Webhook)->create($events);
 ```
+
+
+#### Create multiple conditions of webhook
+
+You can make multiple conditions per webhook event by adding additional conditions in the `array`
+```php
+$events = [
+    [
+        'event' => 'transaction.applied',
+        'target' => 'https://{your_endpoint_post}',
+        'conditions' => [
+            [
+                "key" => "senderPublicKey",
+                "condition" => "eq",
+                "value" => "{YOUR SENDER PUBLIC KEY}"
+            ],
+            [
+                "key" => "recipientId",
+                "condition" => "eq",
+                "value" => "{YOUR WALLET ADDRESS}"
+            ]
+        ]
+    ]
+];
+
+(new Webhook)->create($events);
+```
+
+
+### Fees
+You can get your own fees from your node. Add this into your php file or class.
+```php
+use InfinitySolution\Wallet\Fee;
+```
+
+You can also set your own protocol, peer, and URL fee by adding this command once you instantiate the `new Fee();` class.
+
+```php
+$fees = (new Fee);
+$fees->setPeer({URL_PEER});
+$fees->setProtocol({PROTOCOL});
+$fees->setUrlFee({YOUR_URL_FEE});
+return $fees->getFees();
+```
+
+**Example**
+```php
+$fees = (new Fee);
+$fees->setPeer('api.infinitysolutions.io');
+$fees->setProtocol('https');
+$fees->setUrlFee('/api/transactions/fees');
+return $fees->getFees();
+```
+
+**Response**
+```json
+{
+    "data": {
+        "1": {
+            "transfer": "90",
+            "secondSignature": "100000",
+            "delegateRegistration": "1000000",
+            "vote": "100",
+            "multiSignature": "100000",
+            "ipfs": "500000",
+            "multiPayment": "100000",
+            "delegateResignation": "100",
+            "htlcLock": "300",
+            "htlcClaim": "0",
+            "htlcRefund": "0"
+        }
+    }
+}
+```
