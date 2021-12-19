@@ -128,7 +128,6 @@ For the `Testnet` you need to set the network and server once you instantiate th
 $wallet = (new Wallet(new Testnet))->generateWallet();
 
 $data = [
-    'fee' => 1001,
     'amount' => 100000000,
     'passphrase' => $wallet['passphrase'],
     'recipient' => $wallet['address'],
@@ -153,7 +152,7 @@ Response:
                     "typeGroup":1,
                     "nonce":"1",
                     "amount":"100000000",
-                    "fee":"1001",
+                    "fee":"90",
                     "version":2,
                     "network":127,
                     "expiration":0,
@@ -177,7 +176,6 @@ For the `Devnet` you need to set the network and server once you instantiate the
 $wallet = (new Wallet(new Devnet))->generateWallet();
 
 $data = [
-    'fee' => 1001,
     'amount' => 100000000,
     'passphrase' => $wallet['passphrase'],
     'recipient' => $wallet['address'],
@@ -202,7 +200,7 @@ Response:
                     "typeGroup":1,
                     "nonce":"1",
                     "amount":"100000000",
-                    "fee":"1001",
+                    "fee":"90",
                     "version":2,
                     "network":137,
                     "expiration":0,
@@ -225,7 +223,6 @@ For the `Mainnet` you need to set the network and server once you instantiate th
 $wallet = (new Wallet(new Mainnet))->generateWallet();
 
 $data = [
-    'fee' => 1001,
     'amount' => 100000000,
     'passphrase' => $wallet['passphrase'],
     'recipient' => $wallet['address'],
@@ -250,7 +247,7 @@ Response:
                     "typeGroup":1,
                     "nonce":"1",
                     "amount":"100000000",
-                    "fee":"1001",
+                    "fee":"90",
                     "version":2,
                     "network":38,
                     "expiration":0,
