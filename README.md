@@ -111,6 +111,7 @@ $data = [
     'amount' => {AMOUNT IN DECIMAL},
     'passphrase' => {PASSPHRASE},
     'recipient' => {WALLET_ADDRESS},
+    'vendor_field' => {YOUR MESSAGE OR NOTE | THIS IS OPTIONAL}
 ];
 ```
 
@@ -131,6 +132,7 @@ $data = [
     'amount' => 100000000,
     'passphrase' => $wallet['passphrase'],
     'recipient' => $wallet['address'],
+    'vendor_field' => 'Example Message'
 ];
 
 $sign_transaction = (new Transaction);
@@ -156,6 +158,7 @@ Response:
                     "network":127,
                     "expiration":0,
                     "recipientId":"tAvoigCkJe4pxkngs6ChdRKojjCoE1f6s2",
+                    "vendorField":"Example Message",
                     "senderPublicKey":"03688ab87c4b4a9e7f74e9ae0f67ffa05108924595d8ff539b5fa7635be8a68c9b",
                     "signature":"3045022100ea2d326409ea88da4a7eaa47717391c712b4c4e534e79005ce8a51f00a45eebe02204a9de894d6437ad851b06116dfda7769b0ebdd3f22bc586b7a2ca953906832bb",
                     "id":"515564c3b26eb0d6a950e13e8825f387162a6cd64358097c00d2877694aa187b"
@@ -178,6 +181,7 @@ $data = [
     'amount' => 100000000,
     'passphrase' => $wallet['passphrase'],
     'recipient' => $wallet['address'],
+    'vendor_field' => 'Example Message'
 ];
 
 $sign_transaction = (new Transaction);
@@ -203,6 +207,7 @@ Response:
                     "network":137,
                     "expiration":0,
                     "recipientId":"xNjK5NaJ43YEofwNDf5wQncsRHit5qBjik",
+                    "vendorField":"Example Message",
                     "senderPublicKey":"035aa61875fc9dae2abac08b03b831692fe269a7dfb25d7e437ce9215ef5ffde44",
                     "signature":"3045022100f1122f5b91b4e09f6abd1f3503ab113d75efd6ecd5d9d43c7bfbae6db74f3fea02201101657ad9349129288ec65be9442e9d999fb6b4afd47038cbe2636d2440d971",
                     "id":"2f21e2527e4b9f4ab8366766f72e2c08a480cfa221bdd4eb8b7c8bdb4e8277c2"
@@ -224,6 +229,7 @@ $data = [
     'amount' => 100000000,
     'passphrase' => $wallet['passphrase'],
     'recipient' => $wallet['address'],
+    'vendor_field' => 'Example Message'
 ];
 
 $sign_transaction = (new Transaction);
@@ -249,6 +255,7 @@ Response:
                     "network":38,
                     "expiration":0,
                     "recipientId":"GaH5knapB7hHmVN7JQNswnW1uuSnAoxRGh",
+                    "vendorField":"Example Message",
                     "senderPublicKey":"035e65bbf63d1d17f5e1765482402ce0ec67e7e1e250e5b09886ae0b59a1fdf3a6",
                     "signature":"30450221009c2951bf48dcafba06456491f85fe22813100237b4ff61a77b96290a6a8638ad022079efe66b39201de85dd11a3e5cd688767b0c98f0e889ef2ee8e8eccd9e1d6997",
                     "id":"94761b12525e3b8b769f2b629fd1b3ac693e0e7856043f7080f9b7574fbb7a4c"
@@ -428,21 +435,21 @@ return $fees->getFees();
 **Response**
 ```json
 {
-    "data": {
-        "1": {
-            "transfer": "90",
-            "secondSignature": "100000",
-            "delegateRegistration": "1000000",
-            "vote": "100",
-            "multiSignature": "100000",
-            "ipfs": "500000",
-            "multiPayment": "100000",
-            "delegateResignation": "100",
-            "htlcLock": "300",
-            "htlcClaim": "0",
-            "htlcRefund": "0"
-        }
+  "data": {
+    "1": {
+      "transfer": "90",
+      "secondSignature": "100000",
+      "delegateRegistration": "1000000",
+      "vote": "100",
+      "multiSignature": "100000",
+      "ipfs": "500000",
+      "multiPayment": "100000",
+      "delegateResignation": "100",
+      "htlcLock": "300",
+      "htlcClaim": "0",
+      "htlcRefund": "0"
     }
+  }
 }
 ```
 
@@ -473,43 +480,43 @@ return $peer->getPeers();
 **Response**
 ```json
 {
-    "meta": {
-        "count": 23,
-        "pageCount": 1,
-        "totalCount": 23,
-        "next": null,
-        "previous": null,
-        "self": "/peers?page=1&limit=100",
-        "first": "/peers?page=1&limit=100",
-        "last": "/peers?page=1&limit=100"
+  "meta": {
+    "count": 23,
+    "pageCount": 1,
+    "totalCount": 23,
+    "next": null,
+    "previous": null,
+    "self": "/peers?page=1&limit=100",
+    "first": "/peers?page=1&limit=100",
+    "last": "/peers?page=1&limit=100"
+  },
+  "data": [
+    {
+      "ip": "159.65.199.136",
+      "port": 4002,
+      "ports": {
+        "@arkecosystem/core-webhooks": -1,
+        "@arkecosystem/core-exchange-json-rpc": -1,
+        "@arkecosystem/core-api": 4003,
+        "@arkecosystem/core-wallet-api": 4040
+      },
+      "version": "2.6.38",
+      "height": 6678599,
+      "latency": 3
     },
-    "data": [
-        {
-            "ip": "159.65.199.136",
-            "port": 4002,
-            "ports": {
-                "@arkecosystem/core-webhooks": -1,
-                "@arkecosystem/core-exchange-json-rpc": -1,
-                "@arkecosystem/core-api": 4003,
-                "@arkecosystem/core-wallet-api": 4040
-            },
-            "version": "2.6.38",
-            "height": 6678599,
-            "latency": 3
-        },
-        {
-            "ip": "89.233.107.30",
-            "port": 4002,
-            "ports": {
-                "@arkecosystem/core-webhooks": -1,
-                "@arkecosystem/core-exchange-json-rpc": -1,
-                "@arkecosystem/core-wallet-api": 4040,
-                "@arkecosystem/core-api": 4003
-            },
-            "version": "2.6.38",
-            "height": 6678598,
-            "latency": 4
-        }
-    ]
+    {
+      "ip": "89.233.107.30",
+      "port": 4002,
+      "ports": {
+        "@arkecosystem/core-webhooks": -1,
+        "@arkecosystem/core-exchange-json-rpc": -1,
+        "@arkecosystem/core-wallet-api": 4040,
+        "@arkecosystem/core-api": 4003
+      },
+      "version": "2.6.38",
+      "height": 6678598,
+      "latency": 4
+    }
+  ]
 }
 ```

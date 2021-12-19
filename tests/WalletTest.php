@@ -50,6 +50,7 @@ class WalletTest extends TestCase{
             'amount' => 100000000,
             'passphrase' => $wallet['passphrase'],
             'recipient' => $wallet['address'],
+            'vendor_field' => 'Example Message'
         ];
 
         $sign_transaction = (new Transaction);
@@ -72,6 +73,7 @@ class WalletTest extends TestCase{
             'amount' => 100000000,
             'passphrase' => $wallet['passphrase'],
             'recipient' => $wallet['address'],
+            'vendor_field' => 'Example Message'
         ];
 
         $sign_transaction = (new Transaction);
@@ -95,6 +97,7 @@ class WalletTest extends TestCase{
             'amount' => 100000000,
             'passphrase' => $wallet['passphrase'],
             'recipient' => $wallet['address'],
+            'vendor_field' => 'Example Message'
         ];
 
         $sign_transaction = (new Transaction);
@@ -118,6 +121,7 @@ class WalletTest extends TestCase{
             'amount' => 100000000,
             'passphrase' => $wallet['passphrase'],
             'recipient' => $wallet['address'],
+            'vendor_field' => 'Example Message'
         ];
 
         $sign_transaction = (new Transaction);
@@ -127,6 +131,7 @@ class WalletTest extends TestCase{
         $sign_transaction->server('hedge');
         $tx = $sign_transaction->build();
 
+        print_r($tx);
         $this->assertIsArray($tx);
     }
 
@@ -140,6 +145,7 @@ class WalletTest extends TestCase{
             'amount' => 100000000,
             'passphrase' => $wallet['passphrase'],
             'recipient' => $wallet['address'],
+            'vendor_field' => 'Example Message'
         ];
 
         $sign_transaction = (new Transaction);
@@ -149,6 +155,7 @@ class WalletTest extends TestCase{
         $sign_transaction->server('hedge');
         $tx = $sign_transaction->build();
 
+        print_r($tx);
         $this->assertIsArray($tx);
     }
 
@@ -162,6 +169,7 @@ class WalletTest extends TestCase{
             'amount' => 100000000,
             'passphrase' => $wallet['passphrase'],
             'recipient' => $wallet['address'],
+            'vendor_field' => 'Example Message'
         ];
 
         $sign_transaction = (new Transaction);
@@ -171,6 +179,7 @@ class WalletTest extends TestCase{
         $sign_transaction->server('hedge');
         $tx = $sign_transaction->build();
 
+        print_r($tx);
         $this->assertIsArray($tx);
     }
 
