@@ -268,7 +268,7 @@ Response:
 
 ## Webhook
 You can create webhook event, delete and update. You can setup your own protocol, IP address and port. Just follow these code once you instantiate the `Webhook` event class.
-##### [First setup the webhook to you node](https://doc.infinitysolutions.io/install-webhook/)
+##### [First setup the webhook to your node](https://doc.infinitysolutions.io/install-webhook/)
 ```php
 $webhook = new Webhook;
 
