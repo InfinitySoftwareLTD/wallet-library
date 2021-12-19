@@ -25,13 +25,15 @@
                 "InfinitySolution\\Wallet\\WalletServiceProvider",
                 "InfinitySolution\\Wallet\\TransactionServiceProvider",
                 "InfinitySolution\\Wallet\\WebhookServiceProvider",
-                "InfinitySolution\\Wallet\\FeeServiceProvider"
+                "InfinitySolution\\Wallet\\FeeServiceProvider",
+                "InfinitySolution\\Wallet\\PeerServiceProvider"
             ],
             "aliases": {
                 "Wallet": "InfinitySolution\\Wallet\\Facades\\Wallet",
                 "Transaction": "InfinitySolution\\Wallet\\Facades\\Transaction",
                 "Webhook": "InfinitySolution\\Wallet\\Facades\\Webhook",
-                "Fee": "InfinitySolution\\Wallet\\Facades\\Fee"
+                "Fee": "InfinitySolution\\Wallet\\Facades\\Fee",
+                "Peer": "InfinitySolution\\Wallet\\Facades\\Peer"
             }
         }
     },

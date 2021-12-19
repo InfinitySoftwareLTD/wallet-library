@@ -4,6 +4,7 @@ use InfinitySolution\Wallet\Fee;
 use InfinitySolution\Wallet\Network\Infinity\Devnet;
 use InfinitySolution\Wallet\Network\Infinity\Mainnet;
 use InfinitySolution\Wallet\Network\Infinity\Testnet;
+use InfinitySolution\Wallet\Peer;
 use InfinitySolution\Wallet\Transaction;
 use InfinitySolution\Wallet\Wallet;
 use InfinitySolution\Wallet\Webhook;
@@ -196,22 +197,7 @@ class WalletTest extends TestCase{
 
     public function test_it_to_get_webhooks()
     {
-
-        $events = [
-            [
-                'event' => 'transaction.applied',
-                'target' => 'https://infinitysolutions.io/api/blockchain-webhooks',
-                'conditions' => [
-                    [
-                        "key" => "recipientId",
-                        "condition" => "eq",
-                        "value" => "wallet_address"
-                    ]
-                ]
-            ]
-        ];
-
-        $event_created = (new Webhook)->create($events);
+        $event_created = (new Webhook)->getAll();
         $this->assertTrue($event_created);
     }
 
@@ -226,4 +212,16 @@ class WalletTest extends TestCase{
         print_r($fees->getFees());
         $this->assertIsArray($fees->getFees());
     }
+
+    public function test_it_get_peers()
+    {
+        $peer = (new Peer);
+        $peer->setIP('api.infinitysolutions.io');
+        $peer->setProtocol('https');
+        $peer->setUrlParams('/api/v2/peers');
+
+        print_r($peer->getPeers());
+        $this->assertIsArray($peer->getPeers());
+    }
+
 }

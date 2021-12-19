@@ -445,3 +445,71 @@ return $fees->getFees();
     }
 }
 ```
+
+### Peers
+You can get your list of peers by invoking this into your class or php file.
+```php
+use InfinitySolution\Wallet\Peer;
+```
+
+You can set your own node by using this:
+```php
+$peer = (new Peer);
+$peer->setIP({YOUR NODE IP});
+$peer->setProtocol({YOUR PROTOCOL});
+$peer->setUrlParams({YOUR URL PARAMS});
+return $peer->getPeers();
+```
+
+**Example**
+```php
+$peer = (new Peer);
+$peer->setIP('api.infinitysolutions.io');
+$peer->setProtocol('https');
+$peer->setUrlParams('/api/v2/peers');
+return $peer->getPeers();
+```
+
+**Response**
+```json
+{
+    "meta": {
+        "count": 23,
+        "pageCount": 1,
+        "totalCount": 23,
+        "next": null,
+        "previous": null,
+        "self": "/peers?page=1&limit=100",
+        "first": "/peers?page=1&limit=100",
+        "last": "/peers?page=1&limit=100"
+    },
+    "data": [
+        {
+            "ip": "159.65.199.136",
+            "port": 4002,
+            "ports": {
+                "@arkecosystem/core-webhooks": -1,
+                "@arkecosystem/core-exchange-json-rpc": -1,
+                "@arkecosystem/core-api": 4003,
+                "@arkecosystem/core-wallet-api": 4040
+            },
+            "version": "2.6.38",
+            "height": 6678599,
+            "latency": 3
+        },
+        {
+            "ip": "89.233.107.30",
+            "port": 4002,
+            "ports": {
+                "@arkecosystem/core-webhooks": -1,
+                "@arkecosystem/core-exchange-json-rpc": -1,
+                "@arkecosystem/core-wallet-api": 4040,
+                "@arkecosystem/core-api": 4003
+            },
+            "version": "2.6.38",
+            "height": 6678598,
+            "latency": 4
+        }
+    ]
+}
+```
