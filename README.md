@@ -259,8 +259,24 @@ Response:
 }
 ```
 
-#### Webhook
-You can create webhook event, delete and update.
+### Webhook
+You can create webhook event, delete and update. You can setup your own protocol, IP address and port. Just follow these code once you instantiate the `Webhook` event class.
+```php
+$webhook = new Webhook;
+
+$webhook->setProtocol({YOUR PROTOCOL});
+$webhook->setIP({YOUR NODE SERVER});
+$webhook->setPort({YOUR PORT});
+```
+**Example**
+```php
+$webhook = new Webhook;
+
+$webhook->setProtocol('http');
+$webhook->setIP('63.250.53.87');
+$webhook->setPort('4004');
+```
+
 
 #### Create Webhook Event
 Follow the data structure to create an event
@@ -304,7 +320,6 @@ $events = [
 (new Webhook)->create($events);
 ```
 
-
 #### Create multiple conditions of webhook
 
 You can make multiple conditions per webhook event by adding additional conditions in the `array`
@@ -331,6 +346,59 @@ $events = [
 (new Webhook)->create($events);
 ```
 
+#### Get all webhooks
+You can get the list of your webhooks created.
+```php
+return (new Webhook)->getAll();
+```
+If you have your own node server you can set that to get your latest weebhooks by doing this.
+ ```php
+$webhook = new Webhook;
+$webhook->setProtocol({YOUR PROTOCOL});
+$webhook->setIP({YOUR NODE IP});
+$webhook->setPort({YOUR NODE PORT});
+return $webhook->getAll();
+ ```
+
+**Example**
+ ```php
+$webhook = new Webhook;
+$webhook->setProtocol('http');
+$webhook->setIP('63.250.53.87');
+$webhook->setPort('4004');
+return $webhook->getAll();
+ ```
+
+#### Delete Webhook
+You can delete your own webhook by using this code. If the deletion was successful it should return a `boolean`.
+```php
+$webhook = new Webhook;
+$webhook->delete({WEBHOOK-ID});
+```
+
+**Example**
+```php
+$webhook = new Webhook;
+$webhook->delete('bc983be2-1b8a-4415-a9c3-09fda240928d');
+```
+
+And if you have your own node, you can add your own protocol, IP and port by using this.
+```php
+$webhook = new Webhook;
+$webhook->setProtocol({YOUR PROTOCOL});
+$webhook->setIP({YOUR NODE IP});
+$webhook->setPort({YOUR NODE PORT});
+$webhook->delete({WEBHOOK-ID});
+```
+
+**Example**
+```php
+$webhook = new Webhook;
+$webhook->setProtocol('http');
+$webhook->setIP('63.250.53.87');
+$webhook->setPort('4004');
+$webhook->delete('bc983be2-1b8a-4415-a9c3-09fda240928d');
+```
 
 ### Fees
 You can get your own fees from your node. Add this into your php file or class.

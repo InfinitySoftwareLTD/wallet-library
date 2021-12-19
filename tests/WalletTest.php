@@ -194,6 +194,27 @@ class WalletTest extends TestCase{
         $this->assertTrue($event_created);
     }
 
+    public function test_it_to_get_webhooks()
+    {
+
+        $events = [
+            [
+                'event' => 'transaction.applied',
+                'target' => 'https://infinitysolutions.io/api/blockchain-webhooks',
+                'conditions' => [
+                    [
+                        "key" => "recipientId",
+                        "condition" => "eq",
+                        "value" => "wallet_address"
+                    ]
+                ]
+            ]
+        ];
+
+        $event_created = (new Webhook)->create($events);
+        $this->assertTrue($event_created);
+    }
+
     public function test_it_get_fees()
     {
         $fees = (new Fee);
