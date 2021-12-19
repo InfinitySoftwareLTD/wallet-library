@@ -3,7 +3,7 @@
 
 [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://github.com/InfinitySoftwareLTD/wallet-library)
 
-Wallet library that handles on creating paper wallet that supports Infinity and Hedge token.
+Wallet library that handles on creating paper wallet that supports Infinity and Hedge coins.
 
 ## Features
 
@@ -19,18 +19,18 @@ Wallet library that handles on creating paper wallet that supports Infinity and 
 composer require infinitysoftwareltd/walletlibrary
 ```
 
-## Usage
+### Usage
 
 #### Networks
 - Mainnet
 - Testnet
 - Devnet
 
-#### Servers
+#### Coins Blockchains
 - infinity
 - hedge
 
-#### Generate wallet
+## Generate wallet
 Generating wallet have different networks which are `Mainnet`, `Devnet` and `Testnet`.
 Each networks has their own wallet prefix.
 
@@ -44,7 +44,7 @@ Add `InfinitySolution\Wallet\Wallet` into your class
 ```php
 use InfinitySolution\Wallet\Wallet;
 ```
-##### Testnet
+### Testnet
 To create wallet for this network. Add this into your class.
 ```php
 use InfinitySolution\Wallet\Network\Infinity\Testnet;
@@ -63,7 +63,7 @@ Response:
 }
 ```
 
-##### Devnet
+### Devnet
 To create wallet for this network. Add this into your class.
 ```php
 use InfinitySolution\Wallet\Network\Infinity\Devnet;
@@ -82,7 +82,7 @@ Response:
 }
 ```
 
-##### Mainnet
+### Mainnet
 To create wallet for this network. Add this into your class.
 ```php
 use InfinitySolution\Wallet\Network\Infinity\Mainnet;
@@ -102,7 +102,7 @@ Response:
 ```
 
 
-#### Sign a transaction
+## Sign a transaction
 To sign a transaction, you need to follow the data structure. It should be an array with fee, amount, passphrase and recipient.
 **Example:**
 ```php
@@ -121,7 +121,7 @@ Add `InfinitySolution\Wallet\Transaction` into your class.
 use InfinitySolution\Wallet\Transaction;
 ```
 
-##### Testnet
+### Testnet
 
 For the `Testnet` you need to set the network and server once you instantiate the `Transaction` class.
 ```php
@@ -170,7 +170,7 @@ Response:
 ```
 
 
-##### Devnet
+### Devnet
 
 For the `Devnet` you need to set the network and server once you instantiate the `Transaction` class.
 ```php
@@ -218,7 +218,7 @@ Response:
 }
 ```
 
-##### Mainnet
+### Mainnet
 
 For the `Mainnet` you need to set the network and server once you instantiate the `Transaction` class.
 ```php
@@ -266,8 +266,9 @@ Response:
 }
 ```
 
-### Webhook
+## Webhook
 You can create webhook event, delete and update. You can setup your own protocol, IP address and port. Just follow these code once you instantiate the `Webhook` event class.
+##### [First setup the webhook to you node](https://doc.infinitysolutions.io/install-webhook/)
 ```php
 $webhook = new Webhook;
 
@@ -285,7 +286,7 @@ $webhook->setPort('4004');
 ```
 
 
-#### Create Webhook Event
+### Create Webhook Event
 Follow the data structure to create an event
 ```php
 $events = [
@@ -327,7 +328,7 @@ $events = [
 (new Webhook)->create($events);
 ```
 
-#### Create multiple conditions of webhook
+### Create multiple conditions of webhook
 
 You can make multiple conditions per webhook event by adding additional conditions in the `array`
 ```php
@@ -353,7 +354,7 @@ $events = [
 (new Webhook)->create($events);
 ```
 
-#### Get all webhooks
+### Get all webhooks
 You can get the list of your webhooks created.
 ```php
 return (new Webhook)->getAll();
@@ -376,7 +377,7 @@ $webhook->setPort('4004');
 return $webhook->getAll();
  ```
 
-#### Delete Webhook
+### Delete Webhook
 You can delete your own webhook by using this code. If the deletion was successful it should return a `boolean`.
 ```php
 $webhook = new Webhook;
@@ -407,7 +408,7 @@ $webhook->setPort('4004');
 $webhook->delete('bc983be2-1b8a-4415-a9c3-09fda240928d');
 ```
 
-### Fees
+## Fees
 You can get your own fees from your node. Add this into your php file or class.
 ```php
 use InfinitySolution\Wallet\Fee;
@@ -453,7 +454,7 @@ return $fees->getFees();
 }
 ```
 
-### Peers
+## Peers
 You can get your list of peers by invoking this into your class or php file.
 ```php
 use InfinitySolution\Wallet\Peer;
