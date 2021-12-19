@@ -14,9 +14,9 @@ class Transaction{
         return $this;
     }
 
-    public function server($server): Transaction
+    public function blockchain($server): Transaction
     {
-        $this->contract->server($server);
+        $this->contract->blockchain($server);
         return $this;
     }
 

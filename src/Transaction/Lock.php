@@ -11,7 +11,7 @@ class Lock implements TransactionContract {
 
     protected $server, $network, $data;
 
-    public function server(string $server)
+    public function blockchain(string $server)
     {
         $this->server = $server;
     }
@@ -36,7 +36,6 @@ class Lock implements TransactionContract {
 
         $validator = Validator::make($this->data, [
             'nonce' => ['required'],
-            'fee' => ['required'],
             'amount' => ['required'],
             'passphrase' => ['required'],
             'recipient' => ['required'],
@@ -81,6 +80,11 @@ class Lock implements TransactionContract {
             if (count($data->data) > 0){
                 $nonce = $data->data[0]->nonce + 1;
             }
+        }
+
+        // Default Fee
+        if (!isset($this->data['fee'])){
+            $this->data['fee'] = 300;
         }
 
         $generated =  HtlcLockBuilder::new()

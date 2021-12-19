@@ -10,7 +10,7 @@ class Transfer implements TransactionContract {
 
     protected $server, $network, $data;
 
-    public function server(string $server)
+    public function blockchain(string $server)
     {
         $this->server = $server;
     }
@@ -33,7 +33,6 @@ class Transfer implements TransactionContract {
         ];
 
         $validator = Validator::make($this->data, [
-            'fee' => ['required'],
             'amount' => ['required'],
             'passphrase' => ['required'],
             'recipient' => ['required'],
@@ -52,6 +51,10 @@ class Transfer implements TransactionContract {
             ];
         }
 
+        // Default Fee
+        if (!isset($this->data['fee'])){
+            $this->data['fee'] = 90;
+        }
 
         if ($this->server == "infinity"){
             $network = "InfinitySolution\\Wallet\\Network\\Infinity\\".$this->network;

@@ -12,7 +12,7 @@ class Claim implements TransactionContract {
 
     protected $server, $network, $data;
 
-    public function server(string $server)
+    public function blockchain(string $server)
     {
         $this->server = $server;
     }

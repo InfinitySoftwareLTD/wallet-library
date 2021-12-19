@@ -57,7 +57,7 @@ class WalletTest extends TestCase{
         $sign_transaction->setTransaction(new \InfinitySolution\Wallet\Transaction\Transfer);
         $sign_transaction->data($data);
         $sign_transaction->network('Testnet');
-        $sign_transaction->server('infinity');
+        $sign_transaction->blockchain('infinity');
         $tx = $sign_transaction->build();
 
         print_r(json_encode($tx));
@@ -80,7 +80,7 @@ class WalletTest extends TestCase{
         $sign_transaction->setTransaction(new \InfinitySolution\Wallet\Transaction\Transfer);
         $sign_transaction->data($data);
         $sign_transaction->network('Devnet');
-        $sign_transaction->server('infinity');
+        $sign_transaction->blockchain('infinity');
         $tx = $sign_transaction->build();
 
         print_r($tx);
@@ -104,7 +104,7 @@ class WalletTest extends TestCase{
         $sign_transaction->setTransaction(new \InfinitySolution\Wallet\Transaction\Transfer);
         $sign_transaction->data($data);
         $sign_transaction->network('Mainnet');
-        $sign_transaction->server('infinity');
+        $sign_transaction->blockchain('infinity');
         $tx = $sign_transaction->build();
 
         print_r($tx);
@@ -128,7 +128,7 @@ class WalletTest extends TestCase{
         $sign_transaction->setTransaction(new \InfinitySolution\Wallet\Transaction\Transfer);
         $sign_transaction->data($data);
         $sign_transaction->network('Devnet');
-        $sign_transaction->server('hedge');
+        $sign_transaction->blockchain('hedge');
         $tx = $sign_transaction->build();
 
         print_r($tx);
@@ -141,7 +141,6 @@ class WalletTest extends TestCase{
         $wallet = (new Wallet(new \InfinitySolution\Wallet\Network\Hedge\Testnet))->generateWallet();
 
         $data = [
-            'fee' => 1001,
             'amount' => 100000000,
             'passphrase' => $wallet['passphrase'],
             'recipient' => $wallet['address'],
@@ -152,7 +151,7 @@ class WalletTest extends TestCase{
         $sign_transaction->setTransaction(new \InfinitySolution\Wallet\Transaction\Transfer);
         $sign_transaction->data($data);
         $sign_transaction->network('Testnet');
-        $sign_transaction->server('hedge');
+        $sign_transaction->blockchain('hedge');
         $tx = $sign_transaction->build();
 
         print_r($tx);
@@ -176,7 +175,7 @@ class WalletTest extends TestCase{
         $sign_transaction->setTransaction(new \InfinitySolution\Wallet\Transaction\Transfer);
         $sign_transaction->data($data);
         $sign_transaction->network('Mainnet');
-        $sign_transaction->server('hedge');
+        $sign_transaction->blockchain('hedge');
         $tx = $sign_transaction->build();
 
         print_r($tx);

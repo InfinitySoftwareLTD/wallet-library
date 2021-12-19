@@ -2,7 +2,7 @@
 
 interface TransactionContract{
 
-    public function server(string $server);
+    public function blockchain(string $server);
 
     public function network(string $network);
 
