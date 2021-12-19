@@ -138,7 +138,7 @@ $sign_transaction = (new Transaction);
 $sign_transaction->setTransaction(new \InfinitySolution\Wallet\Transaction\Transfer);
 $sign_transaction->data($data);
 $sign_transaction->network('Testnet');
-$sign_transaction->server('infinity');
+$sign_transaction->blockchain('infinity');
 return $sign_transaction->build();
 ```
 
@@ -186,7 +186,7 @@ $sign_transaction = (new Transaction);
 $sign_transaction->setTransaction(new \InfinitySolution\Wallet\Transaction\Transfer);
 $sign_transaction->data($data);
 $sign_transaction->network('Devnet');
-$sign_transaction->server('infinity');
+$sign_transaction->blockchain('infinity');
 return $sign_transaction->build();
 ```
 
@@ -233,7 +233,7 @@ $sign_transaction = (new Transaction);
 $sign_transaction->setTransaction(new \InfinitySolution\Wallet\Transaction\Transfer);
 $sign_transaction->data($data);
 $sign_transaction->network('Mainnet');
-$sign_transaction->server('infinity');
+$sign_transaction->blockchain('infinity');
 return $sign_transaction->build();
 ```
 
