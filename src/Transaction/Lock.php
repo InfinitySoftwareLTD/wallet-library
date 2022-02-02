@@ -1,9 +1,9 @@
 <?php namespace InfinitySolution\Wallet\Transaction;
 
-use ArkEcosystem\Crypto\Configuration\Network;
-use ArkEcosystem\Crypto\Identities\PrivateKey;
-use ArkEcosystem\Crypto\Transactions\Builder\HtlcLockBuilder;
-use ArkEcosystem\Crypto\Transactions\Builder\TransferBuilder;
+use InfinitySolution\Wallet\ArkLib\Configuration\Network;
+use InfinitySolution\Wallet\ArkLib\Identities\PrivateKey;
+use InfinitySolution\Wallet\ArkLib\Transactions\Builder\HtlcLockBuilder;
+use InfinitySolution\Wallet\ArkLib\Transactions\Builder\TransferBuilder;
 use Illuminate\Support\Facades\Validator;
 use InfinitySolution\Wallet\TransactionContract;
 

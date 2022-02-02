@@ -12,7 +12,7 @@ declare(strict_types=1);
  */
 namespace InfinitySolution\Wallet\Network\Infinity;
 
-use ArkEcosystem\Crypto\Networks\AbstractNetwork;
+use InfinitySolution\Wallet\ArkLib\Networks\AbstractNetwork;
 
 /**
  * This is the devnet network class.

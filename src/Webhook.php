@@ -4,9 +4,9 @@ namespace InfinitySolution\Wallet;
 
 class Webhook{
 
-    protected string $protocol = 'http';
-    protected string $ip = '63.250.53.87';
-    protected string $port = '4004';
+    protected $protocol = 'http';
+    protected $ip = '63.250.53.87';
+    protected $port = '4004';
 
     /**
      * @param string $protocol
