@@ -6,7 +6,7 @@ use InfinitySolution\Wallet\TransactionContract;
 
 class Transaction{
 
-    protected \InfinitySolution\Wallet\TransactionContract $contract;
+    protected $contract;
 
     public function setTransaction(TransactionContract $contract)
     {

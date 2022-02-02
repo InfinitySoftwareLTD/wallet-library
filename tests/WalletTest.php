@@ -16,7 +16,7 @@ class WalletTest extends TestCase{
     public function test_it_returns_created_testnet_wallet()
     {
         $wallet = (new Wallet(new Testnet))->generateWallet();
-        print_r($wallet);
+
         $this->assertArrayHasKey('passphrase', $wallet, "Array doesn't contains 'passphrase' as key");
         $this->assertArrayHasKey('pubkey', $wallet, "Array doesn't contains 'pubkey' as key");
         $this->assertArrayHasKey('address', $wallet, "Array doesn't contains 'address' as key");
@@ -25,7 +25,7 @@ class WalletTest extends TestCase{
     public function test_it_returns_created_devnet_wallet()
     {
         $wallet = (new Wallet(new Devnet))->generateWallet();
-        print_r($wallet);
+
         $this->assertArrayHasKey('passphrase', $wallet, "Array doesn't contains 'passphrase' as key");
         $this->assertArrayHasKey('pubkey', $wallet, "Array doesn't contains 'pubkey' as key");
         $this->assertArrayHasKey('address', $wallet, "Array doesn't contains 'address' as key");
@@ -34,7 +34,7 @@ class WalletTest extends TestCase{
     public function test_it_returns_created_mainnet_wallet()
     {
         $wallet = (new Wallet(new Mainnet))->generateWallet();
-        print_r($wallet);
+
         $this->assertArrayHasKey('passphrase', $wallet, "Array doesn't contains 'passphrase' as key");
         $this->assertArrayHasKey('pubkey', $wallet, "Array doesn't contains 'pubkey' as key");
         $this->assertArrayHasKey('address', $wallet, "Array doesn't contains 'address' as key");
@@ -60,8 +60,7 @@ class WalletTest extends TestCase{
         $sign_transaction->blockchain('infinity');
         $tx = $sign_transaction->build();
 
-        print_r(json_encode($tx));
-        $this->assertIsArray($tx);
+        $this->assertArrayHasKey('transactions', $tx);
     }
 
     public function test_it_returns_signed_transfer_devnet_transaction()
@@ -83,8 +82,7 @@ class WalletTest extends TestCase{
         $sign_transaction->blockchain('infinity');
         $tx = $sign_transaction->build();
 
-        print_r($tx);
-        $this->assertIsArray($tx);
+        $this->assertArrayHasKey('transactions', $tx);
     }
 
     public function test_it_returns_signed_transfer_mainnet_transaction()
@@ -107,8 +105,7 @@ class WalletTest extends TestCase{
         $sign_transaction->blockchain('infinity');
         $tx = $sign_transaction->build();
 
-        print_r($tx);
-        $this->assertIsArray($tx);
+        $this->assertArrayHasKey('transactions', $tx);
     }
 
     public function test_it_returns_signed_transfer_devnet_hedge_transaction()
@@ -131,8 +128,7 @@ class WalletTest extends TestCase{
         $sign_transaction->blockchain('hedge');
         $tx = $sign_transaction->build();
 
-        print_r($tx);
-        $this->assertIsArray($tx);
+        $this->assertArrayHasKey('transactions', $tx);
     }
 
     public function test_it_returns_signed_transfer_testnet_hedge_transaction()
@@ -154,8 +150,7 @@ class WalletTest extends TestCase{
         $sign_transaction->blockchain('hedge');
         $tx = $sign_transaction->build();
 
-        print_r($tx);
-        $this->assertIsArray($tx);
+        $this->assertArrayHasKey('transactions', $tx);
     }
 
     public function test_it_returns_signed_transfer_mainnet_hedge_transaction()
@@ -178,8 +173,7 @@ class WalletTest extends TestCase{
         $sign_transaction->blockchain('hedge');
         $tx = $sign_transaction->build();
 
-        print_r($tx);
-        $this->assertIsArray($tx);
+        $this->assertArrayHasKey('transactions', $tx);
     }
 
     public function test_it_to_create_webhook()
@@ -200,7 +194,7 @@ class WalletTest extends TestCase{
         ];
 
         $event_created = (new Webhook)->create($events);
-        $this->assertTrue($event_created);
+        $this->assertTrue(is_array($event_created));
     }
 
     public function test_it_to_get_webhooks()
@@ -217,8 +211,7 @@ class WalletTest extends TestCase{
         $fees->setUrlFee('/api/transactions/fees');
         $fees->getFees();
 
-        print_r($fees->getFees());
-        $this->assertIsArray($fees->getFees());
+        $this->assertArrayHasKey('data', $fees->getFees());
     }
 
     public function test_it_get_peers()
@@ -229,7 +222,7 @@ class WalletTest extends TestCase{
         $peer->setUrlParams('/api/v2/peers');
 
         print_r($peer->getPeers());
-        $this->assertIsArray($peer->getPeers());
+        $this->assertArrayHasKey('data', $peer->getPeers());
     }
 
 }

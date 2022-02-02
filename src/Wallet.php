@@ -2,9 +2,10 @@
 
 namespace InfinitySolution\Wallet;
 
+use BitWasp\Bitcoin\Exceptions\RandomBytesFailure;
 use InfinitySolution\Wallet\Network\Infinity\Mainnet;
-use ArkEcosystem\Crypto\Identities\Address;
-use ArkEcosystem\Crypto\Identities\PrivateKey;
+use InfinitySolution\Wallet\ArkLib\Identities\Address;
+use InfinitySolution\Wallet\ArkLib\Identities\PrivateKey;
 use BitWasp\Bitcoin\Mnemonic\Bip39\Bip39Mnemonic;
 use BitWasp\Bitcoin\Mnemonic\Bip39\Wordlist\EnglishWordList;
 
@@ -26,7 +27,7 @@ class Wallet{
 
     /**
      * @return array
-     * @throws \BitWasp\Bitcoin\Exceptions\RandomBytesFailure
+     * @throws RandomBytesFailure
      */
     public function generateWallet(): array
     {
@@ -35,7 +36,7 @@ class Wallet{
 
     /**
      * @return string
-     * @throws \BitWasp\Bitcoin\Exceptions\RandomBytesFailure
+     * @throws RandomBytesFailure
      */
     public function generatePassphrase(): string
     {
