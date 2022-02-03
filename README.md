@@ -309,7 +309,6 @@ use InfinitySolution\Wallet\Webhook;
 And in your controller or PHP class, pass the array of events and it will return `boolean`.
 ```php
 $events = [
-    [
         'event' => 'transaction.applied',
         'target' => 'https://{your_endpoint_post}',
         'conditions' => [
@@ -319,7 +318,6 @@ $events = [
                 "value" => "wallet_address"
             ]
         ]
-    ]
 ];
 
 (new Webhook)->create($events);
@@ -330,20 +328,18 @@ $events = [
 You can make multiple conditions per webhook event by adding additional conditions in the `array`
 ```php
 $events = [
-    [
-        'event' => 'transaction.applied',
-        'target' => 'https://{your_endpoint_post}',
-        'conditions' => [
-            [
-                "key" => "senderPublicKey",
-                "condition" => "eq",
-                "value" => "{YOUR SENDER PUBLIC KEY}"
-            ],
-            [
-                "key" => "recipientId",
-                "condition" => "eq",
-                "value" => "{YOUR WALLET ADDRESS}"
-            ]
+    'event' => 'transaction.applied',
+    'target' => 'https://{your_endpoint_post}',
+    'conditions' => [
+        [
+            "key" => "senderPublicKey",
+            "condition" => "eq",
+            "value" => "{YOUR SENDER PUBLIC KEY}"
+        ],
+        [
+            "key" => "recipientId",
+            "condition" => "eq",
+            "value" => "{YOUR WALLET ADDRESS}"
         ]
     ]
 ];
