@@ -266,6 +266,38 @@ Response:
 }
 ```
 
+## Send the transaction into blockchain
+
+```php
+$data = [
+    'fee' => 90,
+    'amount' => 100000,
+    'passphrase' => '{SENDER_PASSPHRASE}',
+    'recipient' => '{RECIPIENT_WALLET_ADDRESS}',
+    'vendor_field' => 'TEST MESSAGE'
+];
+
+$sign_transaction = (new Transaction);
+$sign_transaction->setTransaction(new \InfinitySolution\Wallet\Transaction\Transfer);
+$sign_transaction->data($data);
+$sign_transaction->network('Mainnet');
+$sign_transaction->blockchain('infinity');
+$sign_transaction->peer('{IP_PEER}:{PORT}');
+$tx = $sign_transaction->build();
+
+$peer = $tx['peer'];
+
+$client = new \GuzzleHttp\Client();
+$req = $client->post($peer, ['json'=> $tx['transactions']]);
+
+$data = $req->getBody()->getContents();
+if ($data) {
+    $data = json_decode($data);
+    // This will return an object of ['accept' => ['transaction_id']]
+}
+```
+
+
 ## Webhook
 You can create webhook event, delete and update. You can setup your own protocol, IP address and port. Just follow these code once you instantiate the `Webhook` event class.
 ##### [First setup the webhook to your node](https://doc.infinitysolutions.io/install-webhook/)
