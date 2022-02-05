@@ -3,7 +3,6 @@
 use InfinitySolution\Wallet\ArkLib\Configuration\Network;
 use InfinitySolution\Wallet\ArkLib\Identities\PrivateKey;
 use InfinitySolution\Wallet\ArkLib\Transactions\Builder\TransferBuilder;
-use Illuminate\Support\Facades\Validator;
 use InfinitySolution\Wallet\TransactionContract;
 
 class Transfer implements TransactionContract {
@@ -46,21 +45,23 @@ class Transfer implements TransactionContract {
             'peer' => null
         ];
 
-        $validator = Validator::make($this->data, [
-            'amount' => ['required'],
-            'passphrase' => ['required'],
-            'recipient' => ['required'],
-        ]);
-
-        if ($validator->fails()){
-            if ($validator->errors()->hasAny(['network', 'nonce', 'fee', 'amount', 'passphrase', 'recipient'])) {
-                $message = $validator->errors()->first();
-            } else {
-                $message = 'There is an error.';
-            }
-
+        if (!isset($this->data['amount']) || (isset($this->data['amount']) && empty($this->data['amount']))){
             return $response = [
-                'message' => $message,
+                'message' => 'Amount not found.',
+                'peer' => null
+            ];
+        }
+
+        if (!isset($this->data['recipient']) || (isset($this->data['recipient']) && empty($this->data['recipient']))){
+            return $response = [
+                'message' => 'Recipient not found.',
+                'peer' => null
+            ];
+        }
+
+        if (!isset($this->data['passphrase']) || (isset($this->data['passphrase']) && empty($this->data['passphrase']))){
+            return $response = [
+                'message' => 'Passphrase not found.',
                 'peer' => null
             ];
         }
