@@ -109,7 +109,7 @@ To sign a transaction, you need to follow the data structure. It should be an ar
 $data = [
     'fee' => {FEE},
     'amount' => {AMOUNT IN DECIMAL},
-    'passphrase' => {PASSPHRASE},
+    'passphrase' => {SENDER_PASSPHRASE},
     'recipient' => {WALLET_ADDRESS},
     'vendor_field' => {YOUR MESSAGE OR NOTE | THIS IS OPTIONAL}
 ];
@@ -130,7 +130,7 @@ $wallet = (new Wallet(new Testnet))->generateWallet();
 $data = [
     'amount' => 100000000,
     'passphrase' => $wallet['passphrase'],
-    'recipient' => $wallet['address'],
+    'recipient' => '{RECIPIENT ADDRESS}',
     'vendor_field' => 'Example Message'
 ];
 
@@ -139,6 +139,7 @@ $sign_transaction->setTransaction(new \InfinitySolution\Wallet\Transaction\Trans
 $sign_transaction->data($data);
 $sign_transaction->network('Testnet');
 $sign_transaction->blockchain('infinity');
+$sign_transaction->peer('{IP_PEER}:{PORT}');
 return $sign_transaction->build();
 ```
 
@@ -178,7 +179,7 @@ $wallet = (new Wallet(new Devnet))->generateWallet();
 $data = [
     'amount' => 100000000,
     'passphrase' => $wallet['passphrase'],
-    'recipient' => $wallet['address'],
+    'recipient' => '{RECIPIENT ADDRESS}',
     'vendor_field' => 'Example Message'
 ];
 
@@ -187,6 +188,7 @@ $sign_transaction->setTransaction(new \InfinitySolution\Wallet\Transaction\Trans
 $sign_transaction->data($data);
 $sign_transaction->network('Devnet');
 $sign_transaction->blockchain('infinity');
+$sign_transaction->peer('{IP_PEER}:{PORT}');
 return $sign_transaction->build();
 ```
 
@@ -225,7 +227,7 @@ $wallet = (new Wallet(new Mainnet))->generateWallet();
 $data = [
     'amount' => 100000000,
     'passphrase' => $wallet['passphrase'],
-    'recipient' => $wallet['address'],
+    'recipient' => '{RECIPIENT ADDRESS}',
     'vendor_field' => 'Example Message'
 ];
 
@@ -234,6 +236,7 @@ $sign_transaction->setTransaction(new \InfinitySolution\Wallet\Transaction\Trans
 $sign_transaction->data($data);
 $sign_transaction->network('Mainnet');
 $sign_transaction->blockchain('infinity');
+$sign_transaction->peer('{IP_PEER}:{PORT}');
 return $sign_transaction->build();
 ```
 

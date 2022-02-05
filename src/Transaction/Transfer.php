@@ -8,7 +8,11 @@ use InfinitySolution\Wallet\TransactionContract;
 
 class Transfer implements TransactionContract {
 
-    protected $server, $network, $data;
+    protected $server, $network, $data, $peer;
+    /**
+     * @var string
+     */
+    protected $protocol = 'http';
 
     public function blockchain(string $server)
     {
@@ -23,6 +27,16 @@ class Transfer implements TransactionContract {
     public function data(array $data)
     {
         $this->data = $data;
+    }
+
+    public function peer(string $peer)
+    {
+        $this->peer = $peer;
+    }
+
+    public function protocol(string $protocol)
+    {
+        $this->protocol = $protocol;
     }
 
     public function build(): array
@@ -69,7 +83,7 @@ class Transfer implements TransactionContract {
         $publicKey = $keys->getPublicKey()->getHex();
 
         $client = new \GuzzleHttp\Client();
-        $req = $client->get($network->peer() . '/wallets?publicKey=' . $publicKey);
+        $req = $client->get($this->protocol . '://' . $this->peer . '/api/wallets?publicKey=' . $publicKey);
         $nonce = 1;
         if ($data = $req->getBody()->getContents()) {
             $data = json_decode($data);
@@ -94,7 +108,7 @@ class Transfer implements TransactionContract {
             ];
 
             $response['message'] = $transactions;
-            $response['peer'] = $network->peer() . '/transactions';
+            $response['peer'] = $this->protocol . '://' . $this->peer . '/api/transactions';
         }
 
         return [

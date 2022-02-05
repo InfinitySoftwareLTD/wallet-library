@@ -1,5 +1,6 @@
 <?php namespace InfinitySolution\Wallet\Tests;
 
+use Illuminate\Support\Facades\Log;
 use InfinitySolution\Wallet\Fee;
 use InfinitySolution\Wallet\Network\Infinity\Devnet;
 use InfinitySolution\Wallet\Network\Infinity\Mainnet;
@@ -103,7 +104,10 @@ class WalletTest extends TestCase{
         $sign_transaction->data($data);
         $sign_transaction->network('Mainnet');
         $sign_transaction->blockchain('infinity');
+        $sign_transaction->peer('{PEER}:{PORT}');
         $tx = $sign_transaction->build();
+
+        print_r($tx);
 
         $this->assertArrayHasKey('transactions', $tx);
     }
@@ -174,6 +178,42 @@ class WalletTest extends TestCase{
         $tx = $sign_transaction->build();
 
         $this->assertArrayHasKey('transactions', $tx);
+    }
+
+    public function test_it_sends_the_signed_tx_to_node()
+    {
+
+        $wallet = (new Wallet(new \InfinitySolution\Wallet\Network\Hedge\Mainnet))->generateWallet();
+
+        $data = [
+            'fee' => 90,
+            'amount' => 100000,
+            'passphrase' => '{SENDER_PASSPHRASE}',
+            'recipient' => '{RECIPIENT_WALLET_ADDRESS}',
+            'vendor_field' => 'TEST MESSAGE'
+        ];
+
+        $sign_transaction = (new Transaction);
+        $sign_transaction->setTransaction(new \InfinitySolution\Wallet\Transaction\Transfer);
+        $sign_transaction->data($data);
+        $sign_transaction->network('Mainnet');
+        $sign_transaction->blockchain('infinity');
+        $sign_transaction->peer('{IP_PEER}:{PORT}');
+        $tx = $sign_transaction->build();
+
+        $peer = $tx['peer'];
+
+        $client = new \GuzzleHttp\Client();
+        $req = $client->post($peer, ['json'=> $tx['transactions']]);
+
+        $data = $req->getBody()->getContents();
+        if ($data) {
+            $data = json_decode($data);
+            // This will return an object of ['accept' => ['transaction_id']]
+        }
+
+        $this->assertTrue(true);
+
     }
 
     public function test_it_to_create_webhook()

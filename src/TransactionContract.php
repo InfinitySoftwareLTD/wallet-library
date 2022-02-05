@@ -8,5 +8,9 @@ interface TransactionContract{
 
     public function data(array $data);
 
+    public function peer(string $peer);
+
+    public function protocol(string $protocol);
+
     public function build();
 }

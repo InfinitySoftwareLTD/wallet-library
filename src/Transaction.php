@@ -36,4 +36,16 @@ class Transaction{
     {
         return $this->contract->build();
     }
+
+    public function peer($peer): Transaction
+    {
+        $this->contract->peer($peer);
+        return $this;
+    }
+
+    public function protocol($protocol): Transaction
+    {
+        $this->contract->protocol($protocol);
+        return $this;
+    }
 }
