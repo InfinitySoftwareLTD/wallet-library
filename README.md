@@ -267,7 +267,7 @@ Response:
 ```
 
 ## Send the transaction into blockchain
-
+Send transaction into node with custom peer.
 ```php
 $data = [
     'fee' => 90,
@@ -295,6 +295,7 @@ if ($data) {
     $data = json_decode($data);
     // This will return an object of ['accept' => ['transaction_id']]
 }
+
 
 ```
 
