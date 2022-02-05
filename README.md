@@ -295,6 +295,7 @@ if ($data) {
     $data = json_decode($data);
     // This will return an object of ['accept' => ['transaction_id']]
 }
+
 ```
 
 
