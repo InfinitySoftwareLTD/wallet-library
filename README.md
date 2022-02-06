@@ -102,7 +102,7 @@ Response:
 ```
 
 
-## Generate QRcode for the costumers
+## Generate QRcode for the Costumers
 
 Your exchange is probably generating QRcode wallet address for your costumers.
 The format expected by mobile App Infinity to reconize the network and the wallet is {network}:{address}
