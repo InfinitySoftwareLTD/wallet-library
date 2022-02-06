@@ -102,6 +102,20 @@ Response:
 ```
 
 
+## Generate QRcode for the costumers
+
+Your exchange is probably generating QRcode wallet address for your costumers.
+The format expected by mobile App Infinity to reconize the network and the wallet is {network}:{address}
+
+#### Example 
+
+##### for Blockchain Infinity 
+    infi:GWHtg6SufVqKx539msjMoZZqa89g9Z4tg8
+##### for Blockchain Hedge    
+    edge:GWHtg6SufVqKx539msjMoZZqa89g9Z4tg8
+    
+    
+
 ## Sign a transaction
 To sign a transaction, you need to follow the data structure. It should be an array with fee, amount, passphrase and recipient.
 **Example:**
