@@ -107,7 +107,7 @@ Response:
 Your exchange is probably generating QRcode wallet address for your costumers.
 The format expected by mobile App Infinity to reconize the network and the wallet is {network}:{address}
 
-#### Example 
+#### Example QRcode Data
 
 ##### for Blockchain Infinity 
     infi:GWHtg6SufVqKx539msjMoZZqa89g9Z4tg8
